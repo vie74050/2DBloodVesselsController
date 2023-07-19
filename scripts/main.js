@@ -57,9 +57,8 @@ $(document).ready(function () {
                 $.each(headings, (i, key)=>{
                     // iterate through setting's parameters
                     let $td = $(values[i]);
-                    let rawContent = $td.html();
-                    let content = rawContent;      
-                                        
+                    let content = $td.text().trim();
+                   
                     // no content -- use first row content
                     if ( !content && initialSetting[key] ){
                         content = initialSetting[key];  
@@ -305,14 +304,14 @@ function setContractility(val=0.5) {
     // @val, 0..1
     // sets css --contractility var for heartbeat stroke-width anim (0..10)
     document.documentElement.style.setProperty('--contractility', (1-val)*10);    
-    console.log("contractility:",1-val);
+    //console.log("contractility:",val);
 }
 
 function setOpacity(val=1, id) {
     // @val, 0..1 
     let $target = $(id);
     $target.css("opacity", val); 
-    console.log(id,val);
+    //console.log(id,val);
 }
 
 function setLungFill(val=0, id = "#svg-lungfill") {
@@ -334,7 +333,7 @@ function setSVGTime( val, targetsvg_id, dur = 9) {
     let target = $("svg"+targetsvg_id)[0];
     
     target.setCurrentTime(val*dur);
-    console.log(targetsvg_id, val, dur, val*dur);
+    //console.log(targetsvg_id, val, dur, val*dur);
 }
 
 function setSVGDur(selector, val){
@@ -352,13 +351,27 @@ function setSVGDur(selector, val){
 
 function setBloodFlowRate(){
     // blood flow based on core, peripheral and HR values
-    // default duration 5s (p=5, c=5, hr=60bpm)
-    let p = 10-Number( $("#ui-peripheral").val() ),  // peripheral dilation, 0...10
-        c = 10-Number( $("#ui-core").val() ),        // core dilation, 0...10
-        ctr = $("#ui-contractility").val(),          // contractility, 0...1
-        h = Number( $("#ui-hr").val() );             // hr, 10...200
+    // default duration 5s (p=0.5, c=0.5, hr=105bpm)
+    const baseRate = 5;
 
-    let rate = p/5 + c/2 + h;
+    let p = Number( $("#ui-peripheral").val() ),  // peripheral dilation, 0...1
+        c = Number( $("#ui-core").val() ),        // core dilation, 0...1
+        ctr = Number($("#ui-contractility").val()) + 0.001,       // contractility, 0...1
+        h = Number( $("#ui-hr").val() );          // hr, 10...200
+
+    let rate = (baseRate * (105/h + p + c + 0.5/ctr)/3).clamp(0.1,10) ;
     
-    setSVGDur(".dot animateMotion",rate); console.log(p,c,h,rate);
+    setSVGDur(".dot animateMotion",rate); 
+    console.log(105/h , p , c , 0.5/ctr);
 }
+
+/*Returns a number whose value is limited to the given range.
+*
+* @method Number.prototype.clamp
+* @param {Number} min The lower boundary
+* @param {Number} max The upper boundary
+* @return {Number} A number in the range (min, max)
+*/
+Number.prototype.clamp = function(min, max) {
+   return Math.min(Math.max(this, min), max);
+};
