@@ -49,6 +49,11 @@ h2, .h2{
 #archie-activity-container {
 	height: 550px;
 }
+iframe#svg_frame{
+	border: none;
+	width: 100%;
+	height: 100%;
+}
 table{
 	border-spacing: 20px 10px;
 }
@@ -173,7 +178,9 @@ input[type=range]{
 	width:100%;
 }
 input[type=range]:not(:disabled){
-	-webkit-appearance: none;
+	-webkit-appearance: none; /* WebKit */
+  	-moz-appearance: none; /* Mozilla */
+  	appearance: none; /* CSS3 */
 }
 input[type=range]:not(:disabled){
 	background: var(--enabledColor);
@@ -182,7 +189,9 @@ input[type=range]:not(:disabled){
 	background: var(--enabledColor);
 }
 input[type="range"]:not(:disabled){
-	-webkit-appearance: none;
+	-webkit-appearance: none; /* WebKit */
+  	-moz-appearance: none; /* Mozilla */
+  	appearance: none; /* CSS3 */
 	background: var(--enabledColor);
 }
 
@@ -213,7 +222,6 @@ input[type="range"]:not(:disabled){
 }
 .ui-option label{
 	padding-right: 1em;
-	vertical-align: top;
 	width:100px;
 	display: block;
 	font-size: 0.85em;

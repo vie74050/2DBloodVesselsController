@@ -2,11 +2,14 @@
  * @author Vienna Ly
  * SME: Heather Epp
  * May 29, 2019 BCIT Learning & Teaching Center
- * Update: July 18 2023
- * 
+ * Update: March 2026
+ * - fix for D2L edit mode scrubbing <animate> elements in svgs when saved
+ * - moved svg to external HTML, which is loaded in an iframe
+ * - updated event handling to post messages to iframe instead of directly manipulating svg elements from parent page
+ *  
  * require: 
  *  - jquery
- *  - svgs 
+ *  - archieSVGTemplate.html loaded in an iframe with id 'svg_frame' 
  *  
  *  Archie settings can be set by: table data (from html table) 
  *  -- user not able to adjust input sliders
