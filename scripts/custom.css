@@ -26,7 +26,7 @@ body {
 	min-height: 500px;
 	min-width: 550px;
 }
-body:after{
+#archie-activity-container:after{
 	content:"© BCIT";
 	position: fixed;
 	bottom: 0;

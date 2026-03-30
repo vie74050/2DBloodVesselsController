@@ -1,753 +1,268 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="author" content="(c)Vienna Ly 2019" />
-    <title>Archie</title>
-    <link
-      rel="stylesheet"
-      href="https://ltc.bcit.ca/multimedia/_SOH/2DBloodVesselsController/scripts/custom.css"
-    />
-    <link
-      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
-      rel="stylesheet"
-      integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"
-    ></script>
-    <script
-      type="text/javascript"
-      src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"
-    ></script>
-    <script
-      type="text/javascript"
-      src="scripts/main@2026.js"
-    ></script>
-  </head>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="author" content="(c)Vienna Ly 2019">
+        <title>Archie</title>
+        <link rel="stylesheet" href="https://learn.bcit.ca/shared/scripts/interactive/archie/scripts/custom.css" />
+        <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="https://learn.bcit.ca/shared/scripts/interactive/archie/scripts/main@2026.js"></script>
+    </head>
 
-  <body>
-    <p></p>
-    <!-- Title and description -->
-    <table>
-      <tbody>
-        <tr>
-          <th>Title</th>
-          <th>hr</th>
-          <th>rr</th>
-          <th>o2</th>
-          <th>temp</th>
-          <th>bpsys</th>
-          <th>bpdia</th>
-          <th>
-            <!-- 0...1 -->
-            peripheral
-          </th>
-          <th>
-            <!-- 0...1 -->
-            core
-          </th>
-          <th>
-            <!-- 0...1 -->
-            contractility
-          </th>
-          <th>
-            <!-- 0...1 -->
-            brain
-          </th>
-          <th>
-            <!-- 0...1 -->
-            kidney
-          </th>
-          <th>
-            <!-- 0...1 -->
-            lungfill
-          </th>
-          <th>description</th>
-        </tr>
-        <tr>
-          <td>Normal</td>
-          <td>70</td>
-          <td>14</td>
-          <td>99</td>
-          <td>36.5</td>
-          <td>120</td>
-          <td>65</td>
-          <td>.7</td>
-          <td>.7</td>
-          <td>.5</td>
-          <td>1</td>
-          <td>1</td>
-          <td>0</td>
-          <td>
-            <strong>Normal State</strong>. This is an example of a
-            physiologically normal patient to show you the effects of different
-            "Pressors". Pay close attention to vessel diameter/systemic vascular
-            resistance (SVR), heart rate and contractility.&nbsp;
-          </td>
-        </tr>
-        <tr>
-          <td>Dobutamine</td>
-          <td>85</td>
-          <td>14</td>
-          <td>97</td>
-          <td>36.5</td>
-          <td>105</td>
-          <td>55</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>0</td>
-          <td>
-            <strong>Dobutamine</strong> is primarily an inotrope that acts on
-            Beta-1 receptors to increase contractility of the heart. It's effect
-            on Beta-2 also decreases SVR resulting in vasodilation. This can
-            help to improve CO in some cases by decreasing afterload, making it
-            easier for the heart to eject blood with each contraction.&nbsp;
-          </td>
-        </tr>
-        <tr>
-          <td>Epinephrine</td>
-          <td>130</td>
-          <td>22</td>
-          <td>95</td>
-          <td>36.5</td>
-          <td>160</td>
-          <td>90</td>
-          <td>0</td>
-          <td>.4</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>0</td>
-          <td>
-            <strong>Epinephrine&nbsp;</strong>is a chronotrope, inotrope and
-            vasopressor. It works on Alpha receptors to increase SVR,
-            constricting vessels and shunting blood to vital organs. Effects on
-            Beta-1 increase heart rate and contractility. Be aware,
-            Beta-agonists will also increase myocardial oxygen demand.&nbsp;
-          </td>
-        </tr>
-        <tr>
-          <td>Norepinephrine</td>
-          <td>90</td>
-          <td>16</td>
-          <td>95</td>
-          <td>36.5</td>
-          <td>170</td>
-          <td>95</td>
-          <td>0</td>
-          <td>.3</td>
-          <td>0.5</td>
-          <td>1</td>
-          <td>1</td>
-          <td>0</td>
-          <td>
-            <strong>Norepinephrine&nbsp;</strong>is primarily a vasopressor that
-            acts on alpha receptors to increase SVR, constricting vessels,
-            shunting blood to vital organs and improving venous return. Also has
-            some effect on beta-1, slightly increasing heart rate.&nbsp; &nbsp;
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <p></p>
-    <table>
-      <tbody>
-        <tr>
-          <th>Title</th>
-          <th>hr</th>
-          <th>rr</th>
-          <th>o2</th>
-          <th>temp</th>
-          <th>bpsys</th>
-          <th>bpdia</th>
-          <th>
-            <!-- 0...1 -->
-            peripheral
-          </th>
-          <th>
-            <!-- 0...1 -->
-            core
-          </th>
-          <th>
-            <!-- 0...1 -->
-            contractility
-          </th>
-          <th>
-            <!-- 0...1 -->
-            brain
-          </th>
-          <th>
-            <!-- 0...1 -->
-            kidney
-          </th>
-          <th>
-            <!-- 0...1 -->
-            lungfill
-          </th>
-          <th>description</th>
-        </tr>
-        <tr>
-          <td>Hypovolemic</td>
-          <td>130</td>
-          <td>30</td>
-          <td>97</td>
-          <td>36.0</td>
-          <td>78</td>
-          <td>40</td>
-          <td>0.2</td>
-          <td>.5</td>
-          <td>1</td>
-          <td>0.7</td>
-          <td>0.3</td>
-          <td>0</td>
-          <td>
-            25 year old male, mountain biking, hit a tree and experienced blunt
-            force trauma from the handle bars to his Abdominal RUQ. Patient is
-            alert but pale, cool and tachycardic. Free fluid seen in RUQ of
-            Abdomen on FAST indicating possible Liver Laceration.
-          </td>
-        </tr>
-        <tr>
-          <td>Fluids</td>
-          <td>90</td>
-          <td>16</td>
-          <td>99</td>
-          <td>36.0</td>
-          <td>110</td>
-          <td>70</td>
-          <td>.5</td>
-          <td>.5</td>
-          <td>.5</td>
-          <td>1</td>
-          <td>1</td>
-          <td>0</td>
-          <td>
-            <strong>BEST choice.</strong>&nbsp;Patient has significant internal
-            bleeding causing loss of intravascular volume. Replacing blood loss
-            with <strong>blood products</strong> is essential to fill the pipes
-            and ensure adequate oxygen carrying capacity! Need to restrict the
-            amount of crystalloids infused and move to blood ASAP.&nbsp;&nbsp;
-          </td>
-        </tr>
-        <tr>
-          <td>Dobutamine</td>
-          <td>120</td>
-          <td>24</td>
-          <td>97</td>
-          <td>36.0</td>
-          <td>83</td>
-          <td>45</td>
-          <td>0.6</td>
-          <td>.8</td>
-          <td>1</td>
-          <td>0.2</td>
-          <td>0</td>
-          <td>0</td>
-          <td>
-            <strong>Poor choice.</strong> Increasing contractility will not
-            improve cardiac output if there is no fluid volume in the vessels.
-            The decrease in SVR will further impair blood flow and venous
-            return.&nbsp;
-          </td>
-        </tr>
-        <tr>
-          <td>Epinephrine</td>
-          <td>150</td>
-          <td>26</td>
-          <td>96</td>
-          <td>36.0</td>
-          <td>90</td>
-          <td>40</td>
-          <td>0</td>
-          <td>0.2</td>
-          <td>1</td>
-          <td>0.2</td>
-          <td>0</td>
-          <td>0</td>
-          <td>
-            <strong>Poor choice.</strong> Increasing contractility and SVR will
-            not improve cardiac output if there is no fluid volume in the
-            vessels.&nbsp;
-          </td>
-        </tr>
-        <tr>
-          <td>Norepinephrine</td>
-          <td>120</td>
-          <td>24</td>
-          <td>96</td>
-          <td>36.0</td>
-          <td>90</td>
-          <td>40</td>
-          <td>0</td>
-          <td>0.2</td>
-          <td>0.6</td>
-          <td>0.2</td>
-          <td>0</td>
-          <td>0</td>
-          <td>
-            <strong>Poor choice.</strong> Increasing SVR will not improve
-            cardiac output if there is no fluid volume in the vessels.&nbsp;
-          </td>
-        </tr>
-        <tr>
-          <td>Fluid + Norepinephrine</td>
-          <td>90</td>
-          <td>18</td>
-          <td>97</td>
-          <td>36.0</td>
-          <td>110</td>
-          <td>65</td>
-          <td>0.1</td>
-          <td>0.5</td>
-          <td>1</td>
-          <td>0.8</td>
-          <td>0.3</td>
-          <td>0</td>
-          <td>
-            <b>Controversial&nbsp;choice.</b> If the patient remains unstable
-            with fluid replacement, a vasopressor will not fix a volume problem.
-            The vasopressor will squeeze down on empty pipes and drastically
-            decrease the perfusion of tissues. However, a purely Alpha
-            vasopressor may help to shunt blood to vital organs for short term
-            gain if patient is peri-arrest while getting them to the OR.&nbsp;
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <p></p>
-    <table>
-      <tbody>
-        <tr>
-          <th>Title</th>
-          <th>hr</th>
-          <th>rr</th>
-          <th>o2</th>
-          <th>temp</th>
-          <th>bpsys</th>
-          <th>bpdia</th>
-          <th>
-            <!-- 0...1 -->
-            peripheral
-          </th>
-          <th>
-            <!-- 0...1 -->
-            core
-          </th>
-          <th>
-            <!-- 0...1 -->
-            contractility
-          </th>
-          <th>
-            <!-- 0...1 -->
-            brain
-          </th>
-          <th>
-            <!-- 0...1 -->
-            kidney
-          </th>
-          <th>
-            <!-- 0...1 -->
-            lungfill
-          </th>
-          <th>description</th>
-        </tr>
-        <tr>
-          <td>Sepsis</td>
-          <td>120</td>
-          <td>28</td>
-          <td>92</td>
-          <td>39.0</td>
-          <td>60</td>
-          <td>30</td>
-          <td>1</td>
-          <td>.7</td>
-          <td>.5</td>
-          <td>.3</td>
-          <td>.3</td>
-          <td>0.4</td>
-          <td>
-            66 year old male presenting with urosepsis. Initially given 2 liters
-            normal saline. The patient deteriorates with signs of altered LOC,
-            SOB, skin pale and cool.
-          </td>
-        </tr>
-        <tr>
-          <td>Fluids</td>
-          <td>110</td>
-          <td>30</td>
-          <td>87</td>
-          <td>39.0</td>
-          <td>70</td>
-          <td>40</td>
-          <td>1</td>
-          <td>1</td>
-          <td>.5</td>
-          <td>.3</td>
-          <td>.3</td>
-          <td>0.7</td>
-          <td>
-            <strong>Poor choice</strong> as 2 liters of fluid has already been
-            given. Excessive fluid replacement will shift out of the vessels and
-            into the interstitial space due to vasodilation and leaky
-            capillaries occurring in sepsis. Excess fluid will accumulate in the
-            lungs further impairing oxygen supply.&nbsp;
-          </td>
-        </tr>
-        <tr>
-          <td>Dobutamine</td>
-          <td>115</td>
-          <td>30</td>
-          <td>97</td>
-          <td>39.0</td>
-          <td>65</td>
-          <td>35</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>.55</td>
-          <td>.4</td>
-          <td>.3</td>
-          <td>
-            <strong>Poor Choice</strong>. Sepsis is a pipe issue, not a pump
-            issue. Increasing contractility will not fix the vasodilation and
-            leaky vessels. Fluid will continue to shift from vessels to
-            tissues.&nbsp;
-          </td>
-        </tr>
-        <tr>
-          <td>Epinephrine</td>
-          <td>130</td>
-          <td>22</td>
-          <td>95</td>
-          <td>39.0</td>
-          <td>110</td>
-          <td>60</td>
-          <td>0</td>
-          <td>0.5</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>0</td>
-          <td>
-            <strong>OK choice.</strong> Epinephrine will increase SVR which will
-            fix the vasodilation and leaky vessels, but the increased myocardial
-            demand from increased heart rate and contractility may not be
-            tolerated by all patients. Pediatric patients much better at
-            tolerating the increased demand.&nbsp;
-          </td>
-        </tr>
-        <tr>
-          <td>Norepinephrine</td>
-          <td>90</td>
-          <td>16</td>
-          <td>95</td>
-          <td>39.0</td>
-          <td>110</td>
-          <td>60</td>
-          <td>0</td>
-          <td>0.5</td>
-          <td>0.5</td>
-          <td>1</td>
-          <td>1</td>
-          <td>0</td>
-          <td>
-            <strong>BEST Choice.</strong> Norepinephrine will increase SVR which
-            will fix the vasodilation and leaky vessels without increasing the
-            demand on the heart.&nbsp;
-          </td>
-        </tr>
-        <tr>
-          <td>Norepinephrine + Epinephrine</td>
-          <td>120</td>
-          <td>22</td>
-          <td>96</td>
-          <td>39.0</td>
-          <td>110</td>
-          <td>60</td>
-          <td>0</td>
-          <td>0.5</td>
-          <td>1</td>
-          <td>1</td>
-          <td>1</td>
-          <td>0</td>
-          <td>
-            <strong>Best Choice i</strong
-            ><span
-              ><strong
-                >n patients who are nonresponsive to Norepinephrine.</strong
-              >&nbsp;Adding Epinephrine will boost the patient's catecholamine
-              response, increasing BP and HR. Eventually we are able to wean pt
-              off of Norepineprhine. Be aware, Epinephrine will increase
-              myocardial oxygen demand.&nbsp;</span
-            >
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <p></p>
-    <table>
-      <tbody>
-        <tr>
-          <th>Title</th>
-          <th>hr</th>
-          <th>rr</th>
-          <th>o2</th>
-          <th>temp</th>
-          <th>bpsys</th>
-          <th>bpdia</th>
-          <th>
-            <!-- 0...1 -->
-            peripheral
-          </th>
-          <th>
-            <!-- 0...1 -->
-            core
-          </th>
-          <th>
-            <!-- 0...1 -->
-            contractility
-          </th>
-          <th>
-            <!-- 0...1 -->
-            brain
-          </th>
-          <th>
-            <!-- 0...1 -->
-            kidney
-          </th>
-          <th>
-            <!-- 0...1 -->
-            lungfill
-          </th>
-          <th>description</th>
-        </tr>
-        <tr>
-          <td>Cardiogenic</td>
-          <td>65</td>
-          <td>22</td>
-          <td>85</td>
-          <td>36.0</td>
-          <td>70</td>
-          <td>40</td>
-          <td>.3</td>
-          <td>.5</td>
-          <td>0</td>
-          <td>.2</td>
-          <td>0</td>
-          <td>0.3</td>
-          <td>
-            57 year old female presenting with chest pain. 12Lead ECG shows
-            STEMI in the Anterior-Later al leads. Patient is waiting for
-            transfer to the cath lab and looks like "wet cement" (pale, cool,
-            clammy, grey").
-          </td>
-        </tr>
-        <tr>
-          <td>Fluids</td>
-          <td>64</td>
-          <td>45</td>
-          <td>76</td>
-          <td>35.7</td>
-          <td>70</td>
-          <td>45</td>
-          <td>.3</td>
-          <td>.5</td>
-          <td>0</td>
-          <td>.2</td>
-          <td>0</td>
-          <td>1</td>
-          <td>
-            <strong>Poor Choice</strong>!&nbsp;Fluid will put increased strain
-            on the heart and the already decreased contractility will cause
-            excess fluid to back up into the lungs. Ant-Lat MIs are left sided
-            and therefore not preload dependent like right sided MIs.&nbsp;
-          </td>
-        </tr>
-        <tr>
-          <td>Dobutamine</td>
-          <td>65</td>
-          <td>26</td>
-          <td>94</td>
-          <td>36.0</td>
-          <td>85</td>
-          <td>35</td>
-          <td>0.7</td>
-          <td>1</td>
-          <td>1</td>
-          <td>0.5</td>
-          <td>0.4</td>
-          <td>0</td>
-          <td>
-            <strong>Ok Choice.</strong> Dobutamine will increase heart
-            contractility but will decrease SVR causing vasodilation and poor
-            venous return.&nbsp;
-          </td>
-        </tr>
-        <tr>
-          <td>Epinephrine</td>
-          <td>105</td>
-          <td>19</td>
-          <td>94</td>
-          <td>36.0</td>
-          <td>100</td>
-          <td>60</td>
-          <td>0</td>
-          <td>0.5</td>
-          <td>0.7</td>
-          <td>1</td>
-          <td>0.5</td>
-          <td>0</td>
-          <td>
-            <strong>Ok Choice.</strong> Epinephrine will increase contractility
-            and SVR, but the increased HR will increase the demand of an already
-            struggling heart.&nbsp;
-          </td>
-        </tr>
-        <tr>
-          <td>Norepinephrine</td>
-          <td>65</td>
-          <td>30</td>
-          <td>85</td>
-          <td>36.0</td>
-          <td>80</td>
-          <td>40</td>
-          <td>0</td>
-          <td>0.2</td>
-          <td>0.2</td>
-          <td>.5</td>
-          <td>0</td>
-          <td>.2</td>
-          <td>
-            <strong>Poor Choice.</strong> Norepinephrine will not increase
-            contractility and the increase in SVR will increase afterload,
-            making it harder for the already weakened heart muscle to pump
-            against.&nbsp;
-          </td>
-        </tr>
-        <tr>
-          <td>Dobutamine + Norepinephrine</td>
-          <td>65</td>
-          <td>16</td>
-          <td>95</td>
-          <td>36.0</td>
-          <td>105</td>
-          <td>55</td>
-          <td>0.2</td>
-          <td>0.5</td>
-          <td>1</td>
-          <td>1</td>
-          <td>0.8</td>
-          <td>0</td>
-          <td>
-            <strong>BEST Choice</strong>. Dobutamine will increase contractility
-            and Norepinephrine will even out the decrease in SVR resulting from
-            the Dobutamine, thus improving venous return without the extra
-            workload of increasing HR.&nbsp;
-          </td>
-        </tr>
-      </tbody>
-    </table>
-    <!-- add inline styles for D2L edit mode -->
-    <p></p>
-    <!-- SVG paths: REQUIRED.  DO NOT CHANGE -->
-    <div id="svg_container">
-      <iframe id="svg_frame" src="scripts/archieSVGTemplate.html" style="width:100%; height:100%; border:none"></iframe>
-    </div>
-    <!-- UI SVG controls -->
-    <div id="ui-controls" class="ui-options;">
-      <section>
-        <h2>Vascular settings</h2>
-        <span class="ui-option">
-          <label>Peripheral</label>
-          <input
-            id="ui-peripheral"
-            type="range"
-            name="points"
-            min="0"
-            max="1"
-            step="0.1"
-            oninput="setSVGTime(this.value, '#svg-peripheral')"
-        /></span>
-        <span class="ui-option">
-          <label>Core</label>
-          <input
-            id="ui-core"
-            type="range"
-            name="points"
-            min="0"
-            max="1"
-            step="0.1"
-            oninput="setSVGTime(this.value, '#svg-core')"
-        /></span>
-      </section>
-      <section>
-        <h2>Heart settings</h2>
-        <span class="ui-option">
-          <label>Contractility</label>
-          <input
-            id="ui-contractility"
-            type="range"
-            name="points"
-            min="0"
-            max="1"
-            step="0.1"
-            oninput="setContractility(this.value)"
-        /></span>
-        <span class="ui-option">
-          <label>HR</label>
-          <input
-            id="ui-hr"
-            type="range"
-            name="points"
-            min="10"
-            max="200"
-            step="1"
-            oninput="setHR(this.value, '.heart')"
-        /></span>
-      </section>
-      <section>
-        <h2>Other organs</h2>
-        <span class="ui-option">
-          <label>Brain</label>
-          <input
-            id="ui-brain"
-            type="range"
-            name="points"
-            min="0"
-            max="1"
-            step="0.1"
-            oninput="setOpacity(this.value, '#svg-brain')"
-        /></span>
-        <span class="ui-option">
-          <label>Kidney</label>
-          <input
-            id="ui-kidney"
-            type="range"
-            name="points"
-            min="0"
-            max="1"
-            step="0.1"
-            oninput="setOpacity(this.value, '#svg-kidney')"
-        /></span>
-        <span class="ui-option">
-          <label>Lungs</label>
-          <input
-            id="ui-lungfill"
-            type="range"
-            name="points"
-            min="0"
-            max="1"
-            step="0.1"
-            oninput="setLungFill(this.value, '#svg-lungfill')"
-        /></span>
-      </section>
-    </div>
-  </body>
+    <body>
+        <div id="archie-activity-container" style="height: 550px; overflow-y: auto">
+            <table>
+                <tr>
+                    <th>
+                        Title
+                    </th>
+                    <th>
+                        hr
+                    </th>
+                    <th>
+                        rr
+                    </th>
+                    <th>
+                        o2
+                    </th>
+                    <th>
+                        temp
+                    </th>
+                    <th>
+                        bpsys
+                    </th>
+                    <th>
+                        bpdia
+                    </th>
+                    <th><!-- 0...1 -->
+                        peripheral
+                    </th>
+                    <th><!-- 0...1 -->
+                        core
+                    </th>
+                    <th><!-- 0...1 -->
+                        contractility
+                    </th>
+                    <th><!-- 0...1 -->
+                        brain
+                    </th>
+                    <th><!-- 0...1 -->
+                        kidney
+                    </th>
+                    <th><!-- 0...1 -->
+                        lungfill
+                    </th>
+                    <th>
+                        description
+                    </th>
+                </tr>
+                <tr>
+                    <td>Hypovolemic</td>
+                    <td>130</td>
+                    <td>30</td>
+                    <td>97</td>
+                    <td>36.0</td>
+                    <td>78</td>
+                    <td>40</td>
+                    <td>0.2</td>
+                    <td>.5</td>
+                    <td>1</td>
+                    <td>0.7</td>
+                    <td>0.3</td>
+                    <td>0</td>
+                    <td>
+                      25 year old male, mountain biking, hit a tree and experienced blunt
+                      force trauma from the handle bars to his Abdominal RUQ. Patient is
+                      alert but pale, cool and tachycardic. Free fluid seen in RUQ of
+                      Abdomen on FAST indicating possible Liver Laceration.
+                    </td>
+                  </tr>
+                <tr>
+                    <td>
+                        Fluids
+                    </td>
+                    <td>
+                        90
+                    </td>
+                    <td>
+                        16
+                    </td>
+                    <td>
+                        99
+                    </td>
+                    <td>
+                        36.0
+                    </td>
+                    <td>
+                        110
+                    </td>
+                    <td>
+                        70
+                    </td>
+                    <td>
+                        .5
+                    </td>
+                    <td>
+                        .5
+                    </td>
+                    <td>
+                        .5
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        0
+                    </td>
+                    <td>Hypovolemic with Fluids description</td>
+                </tr>
+                <tr>
+                    <td>
+                        Dobutamine
+                    </td>
+                    <td>
+                        120
+                    </td>
+                    <td>
+                        24
+                    </td>
+                    <td>
+                        97
+                    </td>
+                    <td>
+                        36.0
+                    </td>
+                    <td>
+                        83
+                    </td>
+                    <td>
+                        45
+                    </td>
+                    <td>0</td>
+                    <td>
+                        .5
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        0
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>
+                        Epinephrine
+                    </td>
+                    <td>150</td>
+                    <td>
+                        26
+                    </td>
+                    <td>
+                        96
+                    </td>
+                    <td>
+                        36.0
+                    </td>
+                    <td>
+                        90
+                    </td>
+                    <td>
+                        40
+                    </td>
+                    <td>
+                        0
+                    </td>
+                    <td>
+                        0
+                    </td>
+                    <td>
+                        1
+                    </td>
+                    <td>
+                        0.2
+                    </td>
+                    <td>
+                        0
+                    </td>
+                    <td>
+                        0
+                    </td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td>Norepinephrine</td>
+                    <td>120</td>
+                    <td>24</td>
+                    <td>96</td>
+                    <td>36.0</td>
+                    <td>90</td>
+                    <td>40</td>
+                    <td>0</td>
+                    <td>0.2</td>
+                    <td>0.6</td>
+                    <td>0.2</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>
+                      <strong>Poor choice.</strong> Increasing SVR will not improve
+                      cardiac output if there is no fluid volume in the vessels.&nbsp;
+                    </td>
+                  </tr>
+            </table>         
+                     
+            <div id="svg_container" style="visibility:hidden">
+              <iframe id="svg_frame" src="https://learn.bcit.ca/shared/scripts/interactive/archie/scripts/archieSVGTemplate.html" style="width:100%; height:100%; border:none"></iframe>
+            </div>
+            
+            <!-- UI SVG controls --> 
+            <div id="ui-controls" class="ui-options;"  style="visibility:hidden">
+                
+                <section>
+                    <h2>Vascular settings</h2>
+                    <span class="ui-option">
+                        <label>Peripheral</label>
+                        <input id="ui-peripheral" type="range" name="points" min="0" max="1" step="0.1" oninput="setSVGTime(this.value, '#svg-peripheral')"/></span>
+                    <span class="ui-option">
+                        <label>Core</label>
+                        <input id="ui-core"  type="range" name="points" min="0" max="1" step="0.1" oninput="setSVGTime(this.value, '#svg-core')"></span>
+                </section>
+
+                <section>
+                    <h2>Heart settings</h2>
+                    <span class="ui-option">
+                        <label>Contractility</label>
+                        <input id="ui-contractility" type="range" name="points" min="0" max="1" step="0.1" oninput="setContractility(this.value)"></span>
+                    <span class="ui-option">
+                        <label>HR</label>
+                        <input id="ui-hr" type="range" name="points" min="10" max="200" step="1" oninput="setHR(this.value, '.heart')"></span>               
+                </section>
+
+                <section>
+                    <h2>Other organs</h2>
+                    <span class="ui-option">
+                        <label>Brain</label>
+                        <input id="ui-brain" type="range" name="points" min="0" max="1" step="0.1" oninput="setOpacity(this.value, '#svg-brain')"></span>
+                    <span class="ui-option">
+                        <label>Kidney</label>
+                        <input id="ui-kidney" type="range" name="points" min="0" max="1" step="0.1" oninput="setOpacity(this.value, '#svg-kidney')"></span>
+                    <span class="ui-option">
+                        <label>Lungs</label>
+                        <input id="ui-lungfill" type="range" name="points" min="0" max="1" step="0.1" oninput="setLungFill(this.value, '#svg-lungfill')"></span>           
+                </section>
+
+            </div>
+        </div>
+    </body>
 </html>
