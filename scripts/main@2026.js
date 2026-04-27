@@ -2,10 +2,14 @@
  * @author Vienna Ly
  * SME: Heather Epp
  * May 29, 2019 BCIT Learning & Teaching Center
- * Update: March 2026
+ * Update: 2026 
+ * (for NSHA, SME: Jean Dehaan)
  * - fix for D2L edit mode scrubbing <animate> elements in svgs when saved
  * - moved svg to external HTML, which is loaded in an iframe
  * - updated event handling to post messages to iframe instead of directly manipulating svg elements from parent page
+ * - Calculate MAP from BP values, add to monitor table
+ * - Reordered monitor values to be more typical (HR, BP, MAP, RR, SpO2, Temp)
+ * - if monitor setting is blank, hide the parent table cell 
  *  
  * require: 
  *  - jquery
@@ -152,12 +156,13 @@ $(document).ready(function () {
     function ui_createMonitor($container = $("body")){
         // creates monitor
         let $table = $("<table/>");
+        let mapContent = "<td id='map'/>";
         let content = [
             ["HR bpm", "<td id='hr'/>"],
+            ["BP mmHg", "<td><span id='bpsys'/>/<span id='bpdia'/> (<span id='map'/>)</td>"],
             ["RR bpm", "<td id='rr'/>"],
             ["O2 Sat %", "<td id='o2'/>"],
-            ["Temp.", "<td id='temp'/>"],
-            ["BP mmHg", "<td><span id='bpsys'/>/<span id='bpdia'/></td>"]
+            ["Temp.", "<td id='temp'/>"]            
         ];
         
         $table.attr("id", "monitor").addClass("ui-options");
@@ -254,6 +259,25 @@ class Archie{
             let $input = $("#ui-"+id);
             
             if ($elem.length>0){
+                const $elemparent = $elem.parent();
+
+                if (v === ""){
+                    // if value is blank, hide parent table cell
+                    $elemparent.hide();
+                }else{
+                    $elemparent.show();
+                }
+
+                // if this is a BP value, need to recalculate MAP
+                if (id == "bpsys" || id == "bpdia"){
+                    // calculate MAP and set value
+                    let map = settings.bpsys && settings.bpdia ? Math.round( (parseInt(settings.bpsys) + 2*parseInt(settings.bpdia))/3 ) : "";
+                    const $map = $("#map");
+                    if ($map.length>0){
+                        $map.text(map);
+                    } 
+                }
+
                 $elem.text(v);
             }
             
